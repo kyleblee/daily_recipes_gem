@@ -15,7 +15,17 @@ class DailyRecipes::Recipe
   end
 
   def self.scrape_allrecipes_website
-
+    doc = Nokogiri::HTML(open("http://allrecipes.com/"))
+    site_recipes = doc.css("#grid .grid-col--fixed-tiles")
+    # recipe.attr("class")
+    site_recipes.each_with_index do |recipe, index|
+      if index < 5
+        new_recipe = self.new
+        new_recipe.title = recipe.css("h3.grid-col__h3.grid-col__h3--recipe-grid").text.strip
+        binding.pry
+        new_recipe.save
+      end
+    end
   end
 
   def recipe_card
