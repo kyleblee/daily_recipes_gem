@@ -14,3 +14,19 @@
 
 ## A list of process and progress along the way to use on the blog post:
     - First, used "bundle gem daily_recipes" to automatically generate the project files. Then, created a remote git repository and hook it up to my local repository after making my first commit.
+
+## PLANNING
+    - What is the gem: A CLI application that scrapes the latest recipes on the homepages of allrecipes.com, recipe.com, and seriouseats.com, and presents them to the user so they can choose a recipe and get more information.
+    - USER FLOW
+      - User types in "daily-recipes"
+      - A greeting appears followed by the prompt "Would you like to see the recipes of the day?" ("yes" / "exit")
+      - "yes" brings up 15 recipe titles (5 from each site) in a numbered list
+      - another prompt asks the user if they would like to see more information on any of the recipes (allowing the user to choose by typing the number associated with the recipe title)
+      - If they choose a recipe title, they are shown the following information on that recipe:
+        - the recipe title
+        - a description
+        - total prep / cook time
+      - Another prompt asks them if they would like to see the full recipe, return to the recipe list, or exit the program.
+        - if they choose to see the full recipe, the URL for that recipe is opened in the user's default browser
+        - if they choose to return to the list, the recipe list is shown again with the SAME recipes
+        - if they choose to exit the program, the program ends
