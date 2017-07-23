@@ -17,7 +17,9 @@ class DailyRecipes::CLI
   end
 
   def menu
-    puts "made it!"
+    daily_menu = DailyRecipes::Recipe.todays_recipes
+    # this will get back a list of @@all the recipes in an array
+    # it will then be responsible for iterating through that collection and printing a list of those options for the user
   end
 
   def goodbye

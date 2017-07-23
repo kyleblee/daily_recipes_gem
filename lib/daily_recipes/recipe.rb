@@ -1,4 +1,4 @@
-class DailyRecipes::recipe
+class DailyRecipes::Recipe
   attr_accessor :title, :description, :cook_time, :url
 
   @@all = []
@@ -8,7 +8,10 @@ class DailyRecipes::recipe
   end
 
   def self.todays_recipes
-    #returns a list of recipe titles for the day
+    binding.pry
+    # creates recipes using a separate scrape method for each site and places these recipes in the @@all class variable
+    # then, returns the collection in @@all for the #menu method to use for printing out a menu
+    puts "boom boom diggity"
   end
 
   def recipe_card
