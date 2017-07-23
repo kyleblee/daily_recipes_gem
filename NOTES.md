@@ -16,6 +16,7 @@
 ## A list of process and progress along the way to use on the blog post:
     - First, used "bundle gem daily_recipes" to automatically generate the project files. Then, created a remote git repository and hook it up to my local repository after making my first commit.
     - Once I had the file structure set up. I planned out the user flow of my CLI application in NOTES.md. The general gist was...(see PLANNING below and include in post)
+    - Avi's "CLI Gem Walkthrough" video was a really helpful guide for starting to build. I created a "daily-recipes" file in the bin directory and added a shebang line. The file, for the time being, just puts-ed "You ready to eat some food, yo?", just so I could be sure it was working. Once I tested that, I created a CLI.rb file inside of my lib/daily_recipes directory for actually handling the user interaction of the program and created a class called #start that greets the user and gets the first input (whether or not they would like to see the recipes of the day).
 
 ## PLANNING
     - What is the gem: A CLI application that scrapes the latest recipes on the homepages of allrecipes.com, recipe.com, and seriouseats.com, and presents them to the user so they can choose a recipe and get more information.
