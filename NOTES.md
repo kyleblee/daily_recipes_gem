@@ -18,7 +18,7 @@
     - Once I had the file structure set up. I planned out the user flow of my CLI application in NOTES.md. The general gist was...(see PLANNING below and include in post)
     - Avi's "CLI Gem Walkthrough" video was a really helpful guide for starting to build. I created a "daily-recipes" file in the bin directory and added a shebang line. The file, for the time being, just puts-ed "You ready to eat some food, yo?", just so I could be sure it was working. Once I tested that, I created a CLI.rb file inside of my lib/daily_recipes directory for actually handling the user interaction of the program (the CLI controller) and created a class called #start that greets the user and gets the first input (whether or not they would like to see the recipes of the day).
     - When I tried running the daily-recipes executable, I got the 'uninitialized constant' error because my load dependencies weren't set up correctly. So, I continued to watch Avi's video and used that guidance to fix the dependencies in my program. I decided to use the lib/daily_recipes file as my environment, similar to what he does in the video.
-    - Changed #start to #greeting, to be more descriptive. Then, I added conditional statements inside of #greeting so that "yes" presents a menu for them to choose from, "no" says a "goodbye" message and exits the program, and anything else calls #greeting again until "yes" or "no" is entered. I also used #downcase so that if the user types any uppercase letters, the program shouldn't break.
+    - Changed #start to #greeting, to be more descriptive. Then, I added conditional statements inside of #greeting so that "yes" presents a menu for them to choose from, "no" says a "goodbye" message and exits the program, and anything else calls #greeting again until "yes" or "no" is entered. I also used #downcase so that if the user types any uppercase letters, the program shouldn't break. Went back and added an until loop, so that I can give a "not sure what you meant" message for unexpected inputs and then prompt the user for input again.
 
 ## PLANNING
     - What is the gem: A CLI application that scrapes the latest recipes on the homepages of allrecipes.com, recipe.com, and seriouseats.com, and presents them to the user so they can choose a recipe and get more information.
@@ -35,3 +35,9 @@
         - if they choose to see the full recipe, the URL for that recipe is opened in the user's default browser
         - if they choose to return to the list, the recipe list is shown again with the SAME recipes
         - if they choose to exit the program, the program ends
+      - So I'll need a recipe object that contains the following attributes:
+        - a title
+        - a description
+        - a total cook/prep time
+        - a URL for the full recipe
+      - All recipes that are created should be added to a recipe class variable of @@all, so that I can use that collection to present the menu to the user using #each and also give more information if they choose to see more.
