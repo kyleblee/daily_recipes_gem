@@ -11,4 +11,5 @@ require "daily_recipes"
 # Pry.start
 
 require "irb"
+puts "Loading your IRB session!"
 IRB.start(__FILE__)
