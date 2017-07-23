@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
-DailyRecipes::CLI.new.start
+require_relative '../lib/daily_recipes.rb'
+
+DailyRecipes::CLI.new.greeting
