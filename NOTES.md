@@ -8,6 +8,8 @@
   - Final instructions to the user on how to install, run, and use the gem. Use the examples
   in the lab instructions as a guide for this (in the README.md file)
   - Add all of the necessary information to the gemspec file (the TODO's) once you have completed the program and know exactly what it will do.
+  - Use the "string".to_i equals 0 trick that Avi uses as a way of checking to be sure the user entered an integer when they were prompted to choose a recipe for more information.
+  - Use #each.with_index(1) when creating your list so you don't have to use input - 1 the entire time.
   - Specify your gem's dependencies in daily_recipes.gemspec. It's also best practice to specify all the gems that our library depends on in the gemspec.
   - Use daily_recipes.rb as the environment file of your project.
   - Create a video demo (with narration!) describing how a user would interact with your working gem.
@@ -20,6 +22,8 @@
     - When I tried running the daily-recipes executable, I got the 'uninitialized constant' error because my load dependencies weren't set up correctly. So, I continued to watch Avi's video and used that guidance to fix the dependencies in my program. I decided to use the lib/daily_recipes file as my environment, similar to what he does in the video.
     - Changed #start to #greeting, to be more descriptive. Then, I added conditional statements inside of #greeting so that "yes" presents a menu for them to choose from, "no" says a "goodbye" message and exits the program, and anything else calls #greeting again until "yes" or "no" is entered. I also used #downcase so that if the user types any uppercase letters, the program shouldn't break. Went back and added an until loop, so that I can give a "not sure what you meant" message for unexpected inputs and then prompt the user for input again.
     - Next, I defined a class called "recipe" in a file called "recipe.rb" that will be responsible for creating new recipes. When thinking about it, I also decided that this class should be responsible for returning a list of recipes for the day, as well as giving more detail on the specific recipe that the user is interested in learning more about.
+    - I had forgotten to add pry earlier, so I added it to the gemspec file and my environment file, as well. I'm still not entirely sure how Avi required dependencies in the video when he used the console file...
+
 
 ## PLANNING
     - What is the gem: A CLI application that scrapes the latest recipes on the homepages of allrecipes.com, recipe.com, and seriouseats.com, and presents them to the user so they can choose a recipe and get more information.
