@@ -7,6 +7,7 @@
   - Short description on what the gem is for in the README.md file
   - Final instructions to the user on how to install, run, and use the gem. Use the examples
   in the lab instructions as a guide for this (in the README.md file)
+  - Add all of the necessary information to the gemspec file (the TODO's) once you have completed the program and know exactly what it will do.
   - Specify your gem's dependencies in daily_recipes.gemspec. It's also best practice to specify all the gems that our library depends on in the gemspec.
   - Use daily_recipes.rb as the environment file of your project.
   - Create a video demo (with narration!) describing how a user would interact with your working gem.
@@ -14,6 +15,7 @@
 
 ## A list of process and progress along the way to use on the blog post:
     - First, used "bundle gem daily_recipes" to automatically generate the project files. Then, created a remote git repository and hook it up to my local repository after making my first commit.
+    - Once I had the file structure set up. I planned out the user flow of my CLI application in NOTES.md. The general gist was...(see PLANNING below and include in post)
 
 ## PLANNING
     - What is the gem: A CLI application that scrapes the latest recipes on the homepages of allrecipes.com, recipe.com, and seriouseats.com, and presents them to the user so they can choose a recipe and get more information.
