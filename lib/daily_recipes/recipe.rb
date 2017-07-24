@@ -50,7 +50,20 @@ class DailyRecipes::Recipe
         new_recipe.title = recipe.css("div.topSection h3 a").text.strip
         new_recipe.url = recipe.css("div.topSection h3 a").attr("href").value
         new_recipe.save
-        binding.pry
+      end
+    end
+  end
+
+  def self.scrape_seriouseats_website
+    doc = Nokogiri::HTML(open("http://www.seriouseats.com/recipes"))
+    site_recipes = doc.css("div.block__wrapper div.module div.module__wrapper")
+
+    site_recipes.each_with_index do |recipe, index|
+      if index < 5
+        new_recipe = self.new
+        new_recipe.title = recipe.css("a.module__link h4.title").text.strip
+        new_recipe.url = recipe.css("a.module__link").attr("href").value
+        new_recipe.save
       end
     end
   end
