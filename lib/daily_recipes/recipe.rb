@@ -19,7 +19,7 @@ class DailyRecipes::Recipe
   end
 
   def self.scrape_allrecipes_website
-    # getting all of the recipe articles on homepage and removing the marketing / advertisting ones
+    # getting all of the recipe articles from the homepage and removing the marketing / advertisting articles
     doc = Nokogiri::HTML(open("http://allrecipes.com/"))
     site_recipes = doc.css("#grid .grid-col--fixed-tiles").reject do |recipe|
       recipe.attr("class").include?("gridad") || recipe.attr("class").include?("marketing-card")
@@ -36,6 +36,23 @@ class DailyRecipes::Recipe
       end
     end
     self.all
+  end
+
+  def self.scrape_recipe_website
+    doc = Nokogiri::HTML(open("http://www.recipe.com/"))
+    site_recipes = doc.css("section div.masonry div.masonryItem").reject do |recipe|
+      recipe.attr("class").include?("ad")
+    end
+
+    site_recipes.each_with_index do |recipe, index|
+      if index < 5
+        new_recipe = self.new
+        new_recipe.title = recipe.css("div.topSection h3 a").text.strip
+        new_recipe.url = recipe.css("div.topSection h3 a").attr("href").value
+        new_recipe.save
+        binding.pry
+      end
+    end
   end
 
   ######### >>>>> FINISHED THE FIRST SCRAPE MEHTOD (ABOVE), NOW TO TAKE THAT SAME LOGIC AND APPLY IT TO THE OTHER SCRAPING METHODS. THEN, ONCE ALL ARE SCRAPED, @@ALL NEEDS TO BE RETURNED / USED FOR THE INITIAL MENU)
