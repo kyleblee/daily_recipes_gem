@@ -68,9 +68,7 @@ class DailyRecipes::Recipe
     end
   end
 
-  ######### >>>>> FINISHED THE FIRST SCRAPE MEHTOD (ABOVE), NOW TO TAKE THAT SAME LOGIC AND APPLY IT TO THE OTHER SCRAPING METHODS. THEN, ONCE ALL ARE SCRAPED, @@ALL NEEDS TO BE RETURNED / USED FOR THE INITIAL MENU)
-
-  def recipe_card
+  def recipe_description_card
     #returns a recipe card of the recipe that the user chooses, which will contain the recipes: title,
     # a brief description, total cook time, and the url for hte full recipe instructions.
   end

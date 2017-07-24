@@ -2,4 +2,4 @@
 
 require_relative '../lib/daily_recipes.rb'
 
-DailyRecipes::CLI.new.greeting
+DailyRecipes::CLI.new.start
