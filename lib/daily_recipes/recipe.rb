@@ -82,15 +82,18 @@ class DailyRecipes::Recipe
   end
 
   def self.scrape_allrecipes_details(recipe)
-    puts "allrecipes!"
+    corrected_link = URI.parse(recipe.url.gsub("https", "http")).to_s
+    doc = Nokogiri::HTML(open(corrected_link))
+    binding.pry #### stopped here. Fixed the error, now just actually scrape the thing.
   end
 
   def self.scrape_delish_details(recipe)
-    puts "delish!"
+    doc = Nokogiri::HTML(open(recipe.url))
   end
 
   def self.scrape_seriouseats_details(recipe)
-    puts "seriouseats!"
+    doc = Nokogiri::HTML(open(recipe.url))
+    binding.pry
   end
 
   def save
