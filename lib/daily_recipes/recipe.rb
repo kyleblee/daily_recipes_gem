@@ -69,16 +69,28 @@ class DailyRecipes::Recipe
   def self.recipe_description_card(recipe_num)
     # recieves the recipe_num.to_i that the user is interested in learning more about
     chosen_recipe = self.all[recipe_num - 1]
-    
+
     # uses the @url of that recipe object to determine which scraping method to use
     if chosen_recipe.url.include?("allrecipes")
-      puts "allrecipes!" #replace with new scraper method call for the allrecipes full-recipe page
-    elsif chosen_recipe.url.include?("seriouseats")
-      puts "serioueseats!" #replace with new scraper method call for the allrecipes full-recipe page
+      self.scrape_allrecipes_details(chosen_recipe)
     elsif chosen_recipe.url.include?("delish")
-      puts "delish!" #replace with new scraper method call for the allrecipes full-recipe page
+      self.scrape_delish_details(chosen_recipe)
+    elsif chosen_recipe.url.include?("seriouseats")
+      self.scrape_seriouseats_details(chosen_recipe)
     end
     chosen_recipe
+  end
+
+  def self.scrape_allrecipes_details(recipe)
+    puts "allrecipes!"
+  end
+
+  def self.scrape_delish_details(recipe)
+    puts "delish!"
+  end
+
+  def self.scrape_seriouseats_details(recipe)
+    puts "seriouseats!"
   end
 
   def save
