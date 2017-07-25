@@ -13,7 +13,7 @@ class DailyRecipes::Recipe
 
   def self.todays_recipes
     scrape_allrecipes_website
-    scrape_recipe_website
+    scrape_delish_website
     scrape_seriouseats_website
     self.all
   end
@@ -38,17 +38,15 @@ class DailyRecipes::Recipe
     self.all
   end
 
-  def self.scrape_recipe_website
-    doc = Nokogiri::HTML(open("http://www.recipe.com/"))
-    site_recipes = doc.css("section div.masonry div.masonryItem").reject do |recipe|
-      recipe.attr("class").include?("ad")
-    end
+  def self.scrape_delish_website
+    doc = Nokogiri::HTML(open("http://www.delish.com/recipes/"))
+    site_recipes = doc.css("div.special-landing--ad-block div.special-article")
 
     site_recipes.each_with_index do |recipe, index|
       if index < 5
         new_recipe = self.new
-        new_recipe.title = recipe.css("div.topSection h3 a").text.strip
-        new_recipe.url = recipe.css("div.topSection h3 a").attr("href").value
+        new_recipe.title = recipe.css("a.landing-feed--special-title").text
+        new_recipe.url = "http://www.delish.com#{recipe.css("a.landing-feed--special-title").attr("href").value}"
         new_recipe.save
       end
     end
@@ -68,9 +66,19 @@ class DailyRecipes::Recipe
     end
   end
 
-  def recipe_description_card
-    #returns a recipe card of the recipe that the user chooses, which will contain the recipes: title,
-    # a brief description, total cook time, and the url for hte full recipe instructions.
+  def self.recipe_description_card(recipe_num)
+    # recieves the recipe_num.to_i that the user is interested in learning more about
+    chosen_recipe = self.all[recipe_num - 1]
+    
+    # uses the @url of that recipe object to determine which scraping method to use
+    if chosen_recipe.url.include?("allrecipes")
+      puts "allrecipes!" #replace with new scraper method call for the allrecipes full-recipe page
+    elsif chosen_recipe.url.include?("seriouseats")
+      puts "serioueseats!" #replace with new scraper method call for the allrecipes full-recipe page
+    elsif chosen_recipe.url.include?("delish")
+      puts "delish!" #replace with new scraper method call for the allrecipes full-recipe page
+    end
+    chosen_recipe
   end
 
   def save

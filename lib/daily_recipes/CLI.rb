@@ -39,7 +39,7 @@ class DailyRecipes::CLI
       if recipe_num == 'exit'
         goodbye
       elsif recipe_num.to_i > 0
-        ##### need to call a new CLI method that calls the DailyRecipes::Recipe.recipe_description_card to create the recipe card, using scrappers, for that specific object and then return that more detailed object to be turned into a recipe description listing
+        DailyRecipes::Recipe.recipe_description_card(recipe_num.to_i)
       else
         puts "I'm sorry... I didn't understand that. Please type the number of the recipe you would like to learn more about, or type 'exit'."
         recipe_num = nil # make sure this doesn't create an infinite loop... It shouldn't.
