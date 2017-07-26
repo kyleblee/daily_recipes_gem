@@ -84,7 +84,8 @@ class DailyRecipes::Recipe
   def self.scrape_allrecipes_details(recipe)
     corrected_link = URI.parse(recipe.url.gsub("https", "http")).to_s
     doc = Nokogiri::HTML(open(corrected_link))
-    binding.pry #### stopped here. Fixed the error, now just actually scrape the thing.
+    recipe.description = doc.css("section.recipe-summary div.submitter__description").text.strip.delete("/\\\"/")
+    ## might end up doing a list of ingredients instead of total cook time... I think it will be A LOT easier to iterate through
   end
 
   def self.scrape_delish_details(recipe)
