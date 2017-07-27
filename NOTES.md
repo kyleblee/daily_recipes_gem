@@ -45,6 +45,8 @@
     - After playing around in pry to try and find the right selector, I decided to scrape a list of ingredients instead. Still helpful for the user, and it should be a lot easier to iterate through. For time, not only were conditional statements needed to distinguish between times under and over an hour (and therefore had two spans to iterate through), but even just getting that far required MORE conditional statements because there were numerous <span>s with "itemprop=" attributes... so I would need to find the one with a value of "totalTime"... which is a total pain in the ass.
     - Looking at the three sites I am pulling from, ingredients definitely seem like an easier bet. The way they are setup in each full-recipe page should allow for easy iteration to push them into a collection and then print them for the user. I think an ingredients list is still a helpful feature, because the user can make recipe decisions based on ingredients they currently have or will need to buy. :)
     - On allrecipes.com, scraping the ingredients into an array was pretty easy. Just needed to remove an "Add all ingredients to list" button that had the same class as the ingredients, but also had an additional class that I could use to remove it—using the "unless" keyword with the #attr method to look at the class of each ingredient element.
+    - Alright, completed that and I like how it works; so now I'm taking that logic and applying it to the other 2 sites' full-recipe pages.
+    - Unfortunately, delish.com has one-liner copywriting instead of an actual description for each recipe... but it will have to do since there isn't any other information provided...
 
 
 
