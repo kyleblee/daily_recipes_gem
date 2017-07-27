@@ -114,7 +114,6 @@ class DailyRecipes::Recipe
       recipe.ingredients << ingredient.text.strip
     end
     recipe
-    binding.pry
   end
 
   def save
