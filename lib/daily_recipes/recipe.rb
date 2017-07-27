@@ -1,5 +1,5 @@
 class DailyRecipes::Recipe
-  attr_accessor :title, :description, :cook_time, :url
+  attr_accessor :title, :description, :ingredients, :url
 
   @@all = []
 
@@ -85,7 +85,13 @@ class DailyRecipes::Recipe
     corrected_link = URI.parse(recipe.url.gsub("https", "http")).to_s
     doc = Nokogiri::HTML(open(corrected_link))
     recipe.description = doc.css("section.recipe-summary div.submitter__description").text.strip.delete("/\\\"/")
-    ## might end up doing a list of ingredients instead of total cook time... I think it will be A LOT easier to iterate through
+    ingredients = doc.css("div.recipe-container-outer li.checkList__line span.recipe-ingred_txt")
+    recipe.ingredients = []
+    ingredients.each do |ingredient|
+      recipe.ingredients << ingredient.text unless ingredient.attr("class").include?("white")
+    end
+    recipe.ingredients.delete_if {|ingredient| ingredient == ""} # because something seems to be getting added as an empty string for some reason.
+    recipe
   end
 
   def self.scrape_delish_details(recipe)
