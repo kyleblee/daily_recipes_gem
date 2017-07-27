@@ -47,6 +47,8 @@
     - On allrecipes.com, scraping the ingredients into an array was pretty easy. Just needed to remove an "Add all ingredients to list" button that had the same class as the ingredients, but also had an additional class that I could use to remove it—using the "unless" keyword with the #attr method to look at the class of each ingredient element.
     - Alright, completed that and I like how it works; so now I'm taking that logic and applying it to the other 2 sites' full-recipe pages.
     - Unfortunately, delish.com has one-liner copywriting instead of an actual description for each recipe... but it will have to do since there isn't any other information provided...
+    - And seriouseats.com full-recipe pages were no problem. So now we are all set for the class method #recipe_description_card to be returning the full, detailed recipe instance that the user is requesting more information on. We can use that in the CLI to print out the information for the user and prompt them for the next,final layer: being taken to the full-recipe page itself in their browser.
+    - 
 
 
 

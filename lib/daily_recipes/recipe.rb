@@ -92,7 +92,6 @@ class DailyRecipes::Recipe
     end
     recipe.ingredients.delete_if {|ingredient| ingredient == ""} # because something seems to be getting added as an empty string for some reason.
     recipe
-    binding.pry
   end
 
   def self.scrape_delish_details(recipe)
@@ -104,11 +103,17 @@ class DailyRecipes::Recipe
       recipe.ingredients << ingredient.text.strip
     end
     recipe
-    binding.pry
   end
 
   def self.scrape_seriouseats_details(recipe)
     doc = Nokogiri::HTML(open(recipe.url))
+    recipe.description = doc.css("div#entry-text div.recipe-introduction-body p")[1].text
+    ingredients = doc.css("div.recipe-ingredients ul li.ingredient")
+    recipe.ingredients = []
+    ingredients.each do |ingredient|
+      recipe.ingredients << ingredient.text.strip
+    end
+    recipe
     binding.pry
   end
 
