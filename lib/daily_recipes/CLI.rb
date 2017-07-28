@@ -40,12 +40,23 @@ class DailyRecipes::CLI
         goodbye
       elsif recipe_num.to_i > 0
         detailed_recipe = DailyRecipes::Recipe.recipe_description_card(recipe_num.to_i)
-        print_recipe ## need to build this out
+        print_recipe(detailed_recipe)
+        full_directions?
       else
         puts "I'm sorry... I didn't understand that. Please type the number of the recipe you would like to learn more about, or type 'exit'."
         recipe_num = nil # make sure this doesn't create an infinite loop... It shouldn't.
       end
     end
+  end
+
+  def print_recipe(recipe)
+    puts
+    puts recipe.title
+    puts
+    puts recipe.description
+    puts
+    puts "--INGREDIENTS--"
+    recipe.ingredients.each {|ingredient| puts ingredient}
   end
 
   def goodbye
