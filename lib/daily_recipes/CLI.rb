@@ -70,7 +70,9 @@ class DailyRecipes::CLI
     until more_choice != nil
       more_choice = gets.strip.downcase
       if more_choice == 'more'
-        puts "TAKE ME TO THE WEBPAGE!"
+        system("open", "#{recipe.url}")
+        puts "Happy cooking! You can type 'menu' to see the daily menu again or type 'exit'."
+        more_choice = nil
       elsif more_choice == 'menu'
         print_menu
         chosen_recipe = choice

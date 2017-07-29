@@ -15,6 +15,29 @@
   - Create a video demo (with narration!) describing how a user would interact with your working gem.
   - Write a blog post about the project and process, using the notes you took throughout development. Remember to include screenshots of your code for each part you are talking about. Also, incorporate gifs and other things to keep it interesting.
 
+## INITIAL PLANNING
+    - What is the gem: A CLI application that scrapes the latest recipes on the homepages of allrecipes.com, recipe.com, and seriouseats.com, and presents them to the user so they can choose a recipe and get more information.
+    - USER FLOW
+      - User types in "daily-recipes"
+      - A #greeting appears followed by the prompt "Would you like to see the recipes of the day?" ("yes" / "exit")
+      - "yes" brings up 15 recipe titles (5 from each site) in a numbered list
+      - another prompt asks the user if they would like to see more information on any of the recipes (allowing the user to choose by typing the number associated with the recipe title)
+      - If they choose a recipe title, they are shown the following information on that recipe:
+        - the recipe title
+        - a description
+        - total prep / cook time
+      - Another prompt asks them if they would like to see the full recipe, return to the recipe list, or exit the program.
+        - if they choose to see the full recipe, the URL for that recipe is opened in the user's default browser
+        - if they choose to return to the list, the recipe list is shown again with the SAME recipes
+        - if they choose to exit the program, the program ends
+      - So I'll need a recipe object that contains the following attributes:
+        - a title
+        - a description
+        - a total cook/prep time
+        - a URL for the full recipe
+      - All recipes that are created should be added to a recipe class variable of @@all, so that I can use that collection to present the menu to the user using #each and also give more information if they choose to see more.
+
+
 ## A list of process and progress along the way to use on the blog post:
     - {Before you get started with all of the technical talk, do a little talking about the idea itself and how you came up with it ("saw a cookbook open in the kitchen"). Talk about the problem it solves (having to look through site after site, and being overwhelmed with hundreds of recipes).}
     - First, used "bundle gem daily_recipes" to automatically generate the project files. Then, created a remote git repository and hook it up to my local repository after making my first commit.
@@ -51,30 +74,6 @@
     - To do this, the code I "wish I had" would be a method that took the detailed_recipe and called a new method called #print_recipe that would print out the recipe for the user and ask them if they would like to see the full recipe webpage, go back to the main list, or exit.
     - Printing the recipe was easy using the recipe.title, recipe.description, and then iterating through the recipe.ingredients—just using some extra #puts to make space between each. I decided to place the final layer of user flow (navigating to the recipe's page for full directions, going back to the list, or exiting) in it's own method called #full_directions?.
     - I started to build #full_directions? in a very similar way to #start, in the sense that it prompts the user for a response ("Does it look yummy!? You can type 'more' to see the full recipe in-browser. You can also type 'menu' to see the daily menu again or type 'exit'.") and then starts up an until loop which doesn't break until the user has typed 'more' (to be taken to the full recipe in-browser), 'menu' (to see the menu again), or 'exit' to exit the program. I got it up an running, but when I went to test it, I noticed that if the user types 'exit' in #choice (the first time they are asked if they would like to learn more about one of the recipes) they are shown #goodbye but are then asked if they would like to see the full recipe... {{See screenshot "not_really_exiting" in Google Drive}} This is because in #start, full_directions? is running after #choice runs, regardless of what the user entered in #choice. I'll use the return value of #choice to determine whether #full_directions? should run or not. If the user has entered a recipe they are interested in then chosen_recipe will be set to the recipe they are interested in so I can use it in #full_directions?. However, if the user types "exit", nil will be returned and I'll use an unless keyword to avoid #full_directions?
-
-
-
-
-
-
-## INITIAL PLANNING
-    - What is the gem: A CLI application that scrapes the latest recipes on the homepages of allrecipes.com, recipe.com, and seriouseats.com, and presents them to the user so they can choose a recipe and get more information.
-    - USER FLOW
-      - User types in "daily-recipes"
-      - A #greeting appears followed by the prompt "Would you like to see the recipes of the day?" ("yes" / "exit")
-      - "yes" brings up 15 recipe titles (5 from each site) in a numbered list
-      - another prompt asks the user if they would like to see more information on any of the recipes (allowing the user to choose by typing the number associated with the recipe title)
-      - If they choose a recipe title, they are shown the following information on that recipe:
-        - the recipe title
-        - a description
-        - total prep / cook time
-      - Another prompt asks them if they would like to see the full recipe, return to the recipe list, or exit the program.
-        - if they choose to see the full recipe, the URL for that recipe is opened in the user's default browser
-        - if they choose to return to the list, the recipe list is shown again with the SAME recipes
-        - if they choose to exit the program, the program ends
-      - So I'll need a recipe object that contains the following attributes:
-        - a title
-        - a description
-        - a total cook/prep time
-        - a URL for the full recipe
-      - All recipes that are created should be added to a recipe class variable of @@all, so that I can use that collection to present the menu to the user using #each and also give more information if they choose to see more.
+    - Presenting the menu again caused duplicate menu items, at first, because in #menu the program first scrapes the sites and creates recipe objects before printing the menu. This meant that if the menu had already been shown, and the user entered 'menu', the program was creating all of the recipe objects again and then printing them. This was a simply fix of removing the print functionality from #menu and placing it in #print_menu. Then, both #menu and #full_directions? could simply call #print_menu and avoid each other.
+    - Once those were done, it was time for the final step: taking the user to the recipe's webpage if 'more' is entered and giving them the ability to go back to the menu or exit the program. For opening the full recipe webpage, I used #open method built into Ruby and simply interpolated the chosen recipe's url into the argument. After the user enters 'more' and is taken to the webpage, the program prints out a prompt to either see the menu again or press enter. I then set the local variable containing their choice to nil so that the until loop iterates again. I like this implementation because I can just use the logic I have already built (within the until loop).
+    - And with that, my daily-recipes is done!! I'm going to go back through now to add comments which will make things more clear for other developers and do any immediate refactoring that I see!
