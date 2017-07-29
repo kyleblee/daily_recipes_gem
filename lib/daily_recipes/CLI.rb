@@ -6,10 +6,14 @@ class DailyRecipes::CLI
     input = nil
     until input == "yes" || input == "no"
       input = gets.strip.downcase
+
       if input == "yes"
         menu
+        # Asks the user if they would like to see more information, scrapes for additional info
+        # for that object, prints it that information, and then returns the objects
+        # and stores it in a local variable.
         chosen_recipe = choice
-        full_directions?(chosen_recipe) unless chosen_recipe == nil
+        full_directions?(chosen_recipe) unless chosen_recipe == nil # Asks the user if they would like to see the full recipe (in-browser). Either takes them their and then gives them more options, allows them to return to menu, or exits.
       elsif input == "no"
         goodbye
       else
