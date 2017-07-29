@@ -8,7 +8,8 @@ class DailyRecipes::CLI
       input = gets.strip.downcase
       if input == "yes"
         menu
-        choice
+        chosen_recipe = choice
+        full_directions?(chosen_recipe) unless chosen_recipe == nil
       elsif input == "no"
         goodbye
       else
@@ -41,22 +42,45 @@ class DailyRecipes::CLI
       elsif recipe_num.to_i > 0
         detailed_recipe = DailyRecipes::Recipe.recipe_description_card(recipe_num.to_i)
         print_recipe(detailed_recipe)
-        full_directions?
       else
         puts "I'm sorry... I didn't understand that. Please type the number of the recipe you would like to learn more about, or type 'exit'."
-        recipe_num = nil # make sure this doesn't create an infinite loop... It shouldn't.
+        recipe_num = nil
       end
     end
+    detailed_recipe
   end
 
   def print_recipe(recipe)
     puts
-    puts recipe.title
+    puts "----#{recipe.title}----"
     puts
     puts recipe.description
     puts
     puts "--INGREDIENTS--"
     recipe.ingredients.each {|ingredient| puts ingredient}
+  end
+
+  def full_directions?(recipe)
+    puts
+    puts
+    puts "Does it look yummy!? You can type 'more' to see the full recipe in-browser. You can also type 'menu' to see the daily menu again or type 'exit'."
+    more_choice = nil
+    until more_choice != nil
+      more_choice = gets.strip.downcase
+      if more_choice == 'more'
+        puts "TAKE ME TO THE WEBPAGE!"
+      elsif more_choice == 'menu'
+        menu
+        choice
+        full_directions?
+      elsif more_choice == 'exit'
+        goodbye
+      else
+        puts
+        puts "I'm sorry... I didn't understand that. You can type 'more' to see the full recipe in-browser. You can also type 'menu' to see the daily menu again or type 'exit'."
+        more_choice = nil
+      end
+    end
   end
 
   def goodbye
