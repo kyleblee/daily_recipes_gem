@@ -19,13 +19,15 @@ class DailyRecipes::CLI
   end
 
   def menu
+    DailyRecipes::Recipe.todays_recipes
+    print_menu
+  end
+
+  def print_menu
+    puts
     puts "******** Recipes of the Day ********"
-
-    # gets back a list of @@all the recipes for the day, in an array
-    daily_menu = DailyRecipes::Recipe.todays_recipes
-
-    # then, take that collection of daily recipes and puts them in an ordered list for the user to choose from
-    daily_menu.each.with_index(1) do |recipe, index|
+    puts
+    DailyRecipes::Recipe.all.each.with_index(1) do |recipe, index|
       puts "#{index}. #{recipe.title}"
     end
   end
@@ -70,9 +72,9 @@ class DailyRecipes::CLI
       if more_choice == 'more'
         puts "TAKE ME TO THE WEBPAGE!"
       elsif more_choice == 'menu'
-        menu
-        choice
-        full_directions?
+        print_menu
+        chosen_recipe = choice
+        full_directions?(chosen_recipe) unless chosen_recipe == nil
       elsif more_choice == 'exit'
         goodbye
       else
@@ -84,6 +86,7 @@ class DailyRecipes::CLI
   end
 
   def goodbye
+    puts
     puts "Thank you for using Daily Recipes! Hope to see you again soon for more delicious dishes."
   end
 
