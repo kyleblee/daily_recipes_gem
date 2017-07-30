@@ -1,8 +1,8 @@
 # DailyRecipes
 
-Searching for a recipe can be overwhelming. With seemingly hundreds of websites and cookbooks to look through, it can be hard to make a quick decision on what you want to make for a personal or family meal. To avoid this, people frequently make the same recipes, over and over again; sacrificing spontaneity for convenience. It's time for a solution.
+Searching for a recipe can be overwhelming. With seemingly hundreds of websites and cookbooks to look through, it can be hard to make a quick decision on what you want to make for a tasty personal or family meal. To avoid this, people frequently resort to making the same recipes, over and over again; sacrificing spontaneity for convenience. It's time for a solution.
 
-Welcome to Daily Recipes! Your new, handy-dandy CLI application for receiving a short, digestible list of recipes every day. At the perfect intersection of spontaneity and laziness, Daily Recipes makes it easy to choose from a short menu of dishes (scraped from three popular recipe sites), get more information on any that pique your interest, and even be taken to the full recipe in-browser. It is simple, easy to use and saves you from having to look through numerous sites just to find a quick recipe.
+Welcome to Daily Recipes! Your new, handy-dandy CLI application for receiving a short, digestible list of recipes every day. At the perfect intersection of simplicity and laziness, Daily Recipes makes it easy to choose from a short menu of dishes (scraped from three popular recipe sites), get more information on any that pique your interest, and even be taken to the full recipe in-browser. It is simple, easy to use and saves you from having to look through countless sites just to find one quick recipe.
 
 Enjoy and happy cooking!
 
@@ -24,7 +24,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use Daily Recipes, simply navigate to the root folder of the application and enter ./bin/daily-recipes into your command line. You can then follow the prompts to move around in the application and access the information you are interested in.
+
+Note: from time to time, the program will throw a NoMethodError because of a nil value that is only sometimes returned from one of the websites. This rarely happens twice, so if it happens to you, simply run the program again and voila!
 
 ## Development
 
