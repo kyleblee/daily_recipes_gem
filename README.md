@@ -26,7 +26,7 @@ Or install it yourself as:
 
 To use Daily Recipes, simply navigate to the root folder of the application and enter ./bin/daily-recipes into your command line. You can then follow the prompts to move around in the application and access the information you are interested in.
 
-Note: from time to time, the program will throw a NoMethodError because of a nil value that is only sometimes returned from one of the websites. This rarely happens twice, so if it happens to you, simply run the program again and voila!
+Note: from time to time, the program will throw a NoMethodError because of a nil value that is only sometimes returned from one of the websites. This rarely happens twice, so if it happens to you, simply run the program again and voila! In a later version, I will handle this error more elegantly. 
 
 ## Development
 

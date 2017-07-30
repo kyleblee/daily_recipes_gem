@@ -6,9 +6,9 @@
   <!-- - Create a console so that you have a sandbox to play in. -->
   <!-- - Short description on what the gem is for in the README.md file -->
   <!-- - Final instructions to the user on how to install, run, and use the gem. Use the examples in the lab instructions as a guide for this (in the README.md file). Include a short, down-to-earth note about the error that sometimes pops up ("It never happens twice in a row! So, if you see the error, simply start the application again and get back to business. Sorry.") -->
-  - Add all of the necessary information to the gemspec file (the TODO's) once you have completed the program and know exactly what it will do.
+  <!-- - Add all of the necessary information to the gemspec file (the TODO's) once you have completed the program and know exactly what it will do. -->
   <!-- - Use #each.with_index(1) when creating your list so you don't have to use input - 1 the entire time. -->
-  - Specify your gem's dependencies in daily_recipes.gemspec. It's also best practice to specify all the gems that our library depends on in the gemspec.
+  <!-- - Specify your gem's dependencies in daily_recipes.gemspec. It's also best practice to specify all the gems that our library depends on in the gemspec. -->
   <!-- - Use daily_recipes.rb as the environment file of your project. -->
   - Create a video demo (with narration!) describing how a user would interact with your working gem.
   - Write a blog post about the project and process, using the notes you took throughout development. Remember to include screenshots of your code for each part you are talking about. Also, incorporate gifs and other things to keep it interesting.
