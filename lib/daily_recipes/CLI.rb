@@ -6,14 +6,10 @@ class DailyRecipes::CLI
     input = nil
     until input == "yes" || input == "no"
       input = gets.strip.downcase
-
       if input == "yes"
         menu
-        # Asks the user if they would like to see more information, scrapes for additional info
-        # for that object, prints it that information, and then returns the objects
-        # and stores it in a local variable.
         chosen_recipe = choice
-        full_directions?(chosen_recipe) unless chosen_recipe == nil # Asks the user if they would like to see the full recipe (in-browser). Either takes them their and then gives them more options, allows them to return to menu, or exits.
+        full_directions?(chosen_recipe) unless chosen_recipe == nil
       elsif input == "no"
         goodbye
       else
@@ -23,6 +19,9 @@ class DailyRecipes::CLI
   end
 
   def menu
+    # scrapes the websites for recipes, creates instances of Recipe for those recipes,
+    # and adds them to the DailyRecipes::Recipe class variable @@all.
+    # Then, it prints those recipes for the user.
     DailyRecipes::Recipe.todays_recipes
     print_menu
   end
@@ -37,6 +36,9 @@ class DailyRecipes::CLI
   end
 
   def choice
+    # Asks the user if they would like to see more information, scrapes for additional info
+    # for that object, prints it that information, and then returns the objects
+    # and stores it in a local variable.
     puts
     puts "Would you like to learn more about one of these recipes? Enter the number of the recipe you are interested in, or type 'exit'."
 
@@ -67,6 +69,8 @@ class DailyRecipes::CLI
   end
 
   def full_directions?(recipe)
+    # Asks the user if they would like to see the full recipe (in-browser).
+    # Either takes them there and gives them more options or allows them to return to menu or exit the program.
     puts
     puts
     puts "Does it look yummy!? You can type 'more' to see the full recipe in-browser. You can also type 'menu' to see the daily menu again or type 'exit'."
@@ -94,6 +98,7 @@ class DailyRecipes::CLI
   def goodbye
     puts
     puts "Thank you for using Daily Recipes! Hope to see you again soon for more delicious dishes."
+    puts
   end
 
 end
