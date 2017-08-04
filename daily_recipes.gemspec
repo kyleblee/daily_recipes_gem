@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Kyle Lee"]
   spec.email         = ["hello.kylelee@gmail.com"]
 
-  spec.summary       = %q{Recipes for the day}
-  spec.description   = %q{Recipes for the day}
+  spec.summary       = %q{Recipes of the day}
+  spec.description   = %q{Recipes of the day}
   spec.homepage      = "https://github.com/kyleblee/daily_recipes_gem"
   spec.license       = "MIT"
 
