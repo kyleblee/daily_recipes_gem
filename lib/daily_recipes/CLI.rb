@@ -22,7 +22,7 @@ class DailyRecipes::CLI
     # scrapes the websites for recipes, creates instances of Recipe for those recipes,
     # and adds them to the DailyRecipes::Recipe class variable @@all.
     # Then, it prints those recipes for the user.
-    DailyRecipes::Recipe.todays_recipes
+    DailyRecipes::Scraper.todays_recipes
     print_menu
   end
 
@@ -47,7 +47,7 @@ class DailyRecipes::CLI
       recipe_num = gets.strip
       if recipe_num == 'exit'
         goodbye
-      elsif recipe_num.to_i > 0
+      elsif recipe_num.to_i.between?(1, DailyRecipes::Recipe.all.size)
         detailed_recipe = DailyRecipes::Recipe.recipe_description_card(recipe_num.to_i)
         print_recipe(detailed_recipe)
       else
