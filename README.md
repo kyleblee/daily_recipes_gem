@@ -6,6 +6,9 @@ Welcome to Daily Recipes! Your new, handy-dandy CLI application for receiving a 
 
 Enjoy and happy cooking!
 
+Blog post on planning / process / functionality:
+- http://kyleblee.com/2017/08/02/daily_recipes_my_cli_data_gem/
+
 ## Installation
 
 Add this line to your application's Gemfile:
